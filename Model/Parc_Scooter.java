@@ -87,4 +87,26 @@ public class Parc_Scooter {
             System.out.println("Le client que tu as ajouté est null");
         }
     }
+    public void printData() {
+        System.out.println("Parc_Scooter [id: " + idPark + ", nom: " + nom + ", capacite: " + capacite + "]");
+        System.out.print("Marques: ");
+        for (int i = 0; i < marques.size(); i++) {
+            System.out.print(marques.get(i).getNomMark());
+            if (i < marques.size() - 1) System.out.print(", ");
+        }
+        System.out.println();
+        System.out.print("Scooters: ");
+        for (int i = 0; i < scooters.size(); i++) {
+            System.out.print(scooters.get(i).getIdScoot());
+            if (i < scooters.size() - 1) System.out.print(", ");
+        }
+        System.out.println();
+        System.out.print("Clients: ");
+        for (int i = 0; i < clients.size(); i++) {
+            System.out.print(clients.get(i).getNom() + " " + clients.get(i).getPrenom());
+            if (i < clients.size() - 1) System.out.print(", ");
+        }
+        System.out.println();
+    }
+    
 }

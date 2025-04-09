@@ -3,8 +3,8 @@ import java.util.*;
 
 public class Permis {
 
-    public int id_permis;
-    public String type_permis;
+    private int id_permis;
+    private String type_permis;
     private List<Client> clients = new ArrayList<Client>();
     private List<Modele> modeles = new ArrayList<Modele>();
 
@@ -59,5 +59,26 @@ public class Permis {
         } else {
             System.out.println("Le client que tu as ajouté est null");
         }
+
     }
+    public void printData() {
+        System.out.println("Permis [id: " + id_permis + ", type: " + type_permis + "]");
+    
+        System.out.print("Clients: ");
+        for (int i = 0; i < clients.size(); i++) {
+            System.out.print(clients.get(i).getNom() + " " + clients.get(i).getPrenom());
+            if (i < clients.size() - 1) System.out.print(", ");
+        }
+        System.out.println();
+    
+        System.out.print("Modèles: ");
+        for (int i = 0; i < modeles.size(); i++) {
+            System.out.print(modeles.get(i).getModeleNom());
+            if (i < modeles.size() - 1) System.out.print(", ");
+        }
+        System.out.println();
+    }
+    
+    
+    
 }

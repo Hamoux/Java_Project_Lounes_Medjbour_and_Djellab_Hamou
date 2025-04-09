@@ -35,4 +35,14 @@ public class Scooter {
     public void setDisponibilite(boolean disponibilite) { this.disponibilite = disponibilite; }
     public void setModele(Modele modele){this.modele = modele;}
     public void setParc(Parc_Scooter parc){this.parc = parc;}
+    public void printData() {
+        System.out.println("Scooter [id: " + idScoot + ", disponibilite: " + disponibilite +", Parc: " + parc.getNom() +", modele: " + modele.getModeleNom() + "]");
+        System.out.print("Locations: ");
+        for (int i = 0; i < locations.size(); i++) {
+            System.out.print(locations.get(i).getIdLoc());
+            if (i < locations.size() - 1) System.out.print(", ");
+        }
+        System.out.println(); 
+    }
+    
 }

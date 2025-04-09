@@ -55,4 +55,21 @@ public class Client {
     public void setDate_naissance(Date date_naissance) { this.date_naissance = date_naissance; }
     public void setParc(Parc_Scooter parc) {  this.parc=parc; }
 
+    public void printData() {
+        System.out.println("Client [id: " + id + ", nom: " + nom + ", prenom: " + prenom + ", tel: " + tel + ", date_naissance: " + date_naissance + "]");
+        System.out.print("Permisses: ");
+        for (int i = 0; i < permisses.size(); i++) {
+            System.out.print(permisses.get(i).getType_permis());
+            if (i < permisses.size() - 1) System.out.print(", ");
+        }
+        System.out.println();
+        System.out.print("Locations: ");
+        for (int i = 0; i < locations.size(); i++) {
+            System.out.print(locations.get(i).getIdLoc());
+            if (i < locations.size() - 1) System.out.print(", ");
+        }
+        System.out.println();
+    }
+    
 }
+

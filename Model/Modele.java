@@ -88,4 +88,21 @@ public class Modele {
             System.out.println("Le permis que tu as ajouté est null");
         }
     }
+    public void printData() {
+        System.out.println("Modele [id: " + idModele + ", nom: " + modeleNom + ", cylender: " + cylinder + ", vitesse max: " + vitesseMax + "marque:" + marque.getNomMark()+ "]");
+        marque.getNomMark();
+        System.out.print("Scooters: ");
+        for (int i = 0; i < scooters.size(); i++) {
+            System.out.print(scooters.get(i).getIdScoot());
+            if (i < scooters.size() - 1) System.out.print(", ");
+        }
+        System.out.println();
+        System.out.print("Permis: ");
+        for (int i = 0; i < permisses.size(); i++) {
+            System.out.print(permisses.get(i).getType_permis());
+            if (i < permisses.size() - 1) System.out.print(", ");
+            }
+        System.out.println();
+    }
+    
 }
