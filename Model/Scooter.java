@@ -43,7 +43,6 @@ public class Scooter {
             if (i < locations.size() - 1) System.out.print(", ");
         }
         System.out.println(); 
-        System.out.println("hello");
     }
     
 }
