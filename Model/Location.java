@@ -6,7 +6,7 @@ public class Location {
     private int idLoc;
     private Date date_debut;
     private Date date_fin;
-    private double kilometrage = 0;
+    private double kilometrage;
     private Scooter scooter;
     private Client client;
 
