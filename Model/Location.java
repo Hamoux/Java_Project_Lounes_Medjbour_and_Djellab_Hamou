@@ -6,16 +6,15 @@ public class Location {
     private int idLoc;
     private Date date_debut;
     private Date date_fin;
-    private double kilometrage;
+    private double kilometrage = 0;
     private Scooter scooter;
     private Client client;
 
     
-    public Location(int id, Date date_debut, Date date_fin, double kilometrage, Scooter scooter, Client client) {
+    public Location(int id, Date date_debut, Date date_fin, Scooter scooter, Client client) {
         this.idLoc = id;
         this.date_debut = date_debut;
         this.date_fin = date_fin;
-        this.kilometrage = kilometrage;
         this.scooter = scooter;
         this.client = client;
     }

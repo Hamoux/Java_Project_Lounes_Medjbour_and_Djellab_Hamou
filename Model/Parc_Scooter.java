@@ -132,4 +132,21 @@ public class Parc_Scooter {
             }
         }
     }
+    public void RetournerScooter(int idScoot){
+        if (!ScooterExist(idScoot)) {
+            System.out.println("Le scooter n'existe pas!");
+            return;
+        }
+    
+        for (Scooter scooter : scooters) {
+            if (scooter.getIdScoot() == idScoot) {
+                if (!scooter.isAvailable()) {
+                    System.out.println("Le scooter est déjà en location.");
+                } else {
+                    System.out.println("Le scooter est disponible pour la location.");
+                }
+                return;
+            }
+        }
+    }
 }
