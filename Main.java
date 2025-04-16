@@ -13,7 +13,7 @@ public class Main {
         BMW.addModels(MP40);
         Parc_Scooter parc1 = new Parc_Scooter(0, "Louvre", 200);
         parc1.addMarque(BMW);
-        Scooter Scot1 = new Scooter(0, true, MP40, parc1);
+        Scooter Scot1 = new Scooter(0, MP40, parc1);
         parc1.addScooter(Scot1);
         MP40.addScooter(Scot1);
 
@@ -22,7 +22,7 @@ public class Main {
         Yamaha.addModels(XMax);
         Parc_Scooter parc2 = new Parc_Scooter(1, "Montparnasse", 150);
         parc2.addMarque(Yamaha);
-        Scooter Scot2 = new Scooter(1, true, XMax, parc2);
+        Scooter Scot2 = new Scooter(1, XMax, parc2);
         parc2.addScooter(Scot2);
         XMax.addScooter(Scot2);
 
@@ -31,7 +31,7 @@ public class Main {
         Honda.addModels(PCX);
         Parc_Scooter parc3 = new Parc_Scooter(2, "Châtelet", 100);
         parc3.addMarque(Honda);
-        Scooter Scot3 = new Scooter(2, false, PCX, parc3);
+        Scooter Scot3 = new Scooter(2, PCX, parc3);
         parc3.addScooter(Scot3);
         PCX.addScooter(Scot3);
 
@@ -40,7 +40,7 @@ public class Main {
         Ducati.addModels(Monster);
         Parc_Scooter parc4 = new Parc_Scooter(3, "La Défense", 250);
         parc4.addMarque(Ducati);
-        Scooter Scot4 = new Scooter(3, true, Monster, parc4);
+        Scooter Scot4 = new Scooter(3, Monster, parc4);
         parc4.addScooter(Scot4);
         Monster.addScooter(Scot4);
 
