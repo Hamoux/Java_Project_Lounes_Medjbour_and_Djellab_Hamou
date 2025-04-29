@@ -4,7 +4,7 @@ import java.util.*;
 
 
 public class Marque {
-
+    private static int inc = 1;
     private int idMark;
 
     private String nomMark;
@@ -13,8 +13,8 @@ public class Marque {
     private List<Modele> modeles = new ArrayList<Modele>();
 
 
-    public Marque(int idMark, String nomMark) {
-        this.idMark = idMark;
+    public Marque(String nomMark) {
+        this.idMark = inc++;
         this.nomMark = nomMark;
     }
 

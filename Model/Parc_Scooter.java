@@ -3,6 +3,7 @@ import java.util.List;
 
 public class Parc_Scooter {
 
+    private static int inc = 1;
     private int idPark;
     private String nom;
     private int capacite;
@@ -10,8 +11,8 @@ public class Parc_Scooter {
     private List<Marque> marques = new ArrayList<Marque>();
     private List<Client> clients = new ArrayList<Client>();
 
-    public Parc_Scooter(int id, String nom, int capacite) {
-        this.idPark = id;
+    public Parc_Scooter(String nom, int capacite) {
+        this.idPark = inc++;
         this.nom = nom;
         this.capacite = capacite;
     }

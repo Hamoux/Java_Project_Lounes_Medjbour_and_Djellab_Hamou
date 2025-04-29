@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 public class Client {
-
+    private static int inc = 1;
     private int id;
     private String nom;
     private int tel;
@@ -13,8 +13,8 @@ public class Client {
     private List<Permis> permisses = new ArrayList<Permis>();
     private Parc_Scooter parc;
 
-    public Client(int id, String nom, int tel, String prenom, Date date_naissance, Parc_Scooter parc) {
-        this.id = id;
+    public Client(String nom, int tel, String prenom, Date date_naissance, Parc_Scooter parc) {
+        this.id = inc++;
         this.nom = nom;
         this.tel = tel;
         this.prenom = prenom;

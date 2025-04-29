@@ -3,6 +3,7 @@ import java.util.*;
 
 public class Scooter {
 
+    private static int inc = 1;
     private int idScoot;
  
     private Modele modele;
@@ -10,8 +11,8 @@ public class Scooter {
 
     private List<Location> locations = new ArrayList<Location>();
     
-    public Scooter(int idScoot, Modele modele, Parc_Scooter parc) {
-        this.idScoot = idScoot;
+    public Scooter(Modele modele, Parc_Scooter parc) {
+        this.idScoot = inc++;
         this.modele = modele;
         this.parc = parc;
     }

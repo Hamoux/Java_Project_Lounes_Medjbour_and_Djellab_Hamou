@@ -2,6 +2,7 @@
 import java.io.*;
 import java.util.*;
 public class Modele {
+    private static int inc = 1;
     private int idModele;
     private String modeleNom;
     private String cylinder;
@@ -10,8 +11,8 @@ public class Modele {
     private List<Scooter> scooters = new ArrayList<Scooter>();
     private List<Permis> permisses = new ArrayList<Permis>();
 
-    public Modele(int id, String modelName, String cylinder, float vitesseMax, Marque marque) {
-        this.idModele = id;
+    public Modele(String modelName, String cylinder, float vitesseMax, Marque marque) {
+        this.idModele = inc++;
         this.modeleNom = modelName;
         this.cylinder = cylinder;
         this.vitesseMax = vitesseMax;
