@@ -70,6 +70,29 @@ public class Client {
         }
         System.out.println();
     }
+    public void LoueScooter(int idScoot){
+        if (!parc.ScooterExist(idScoot)) {
+            System.err.println("Le scooter n'existe pas!");
+            return;
+        }
+    
+        for (Scooter scooter : parc.getScooters()) {
+            if (scooter.getIdScoot() == idScoot) {
+                if (!scooter.isAvailable()) {
+                    System.out.println("Le scooter est déjà en location.");
+                } else {
+                    Location location2 = new Location(
+                        new Date(),
+                        scooter,
+                        this
+                    );
+                    this.addLocations(location2);
+                    System.out.println("La location est effectuée avec succès.");
+                }
+                return;
+            }
+        }
+    }
     
 }
 

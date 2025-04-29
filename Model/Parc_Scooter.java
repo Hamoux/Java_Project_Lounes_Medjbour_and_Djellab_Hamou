@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 public class Parc_Scooter {
 
@@ -116,24 +117,8 @@ public class Parc_Scooter {
         }
         return false;
     }
-    public void LoueScooter(int idScoot){
-        if (!ScooterExist(idScoot)) {
-            System.err.println("Le scooter n'existe pas!");
-            return;
-        }
-    
-        for (Scooter scooter : scooters) {
-            if (scooter.getIdScoot() == idScoot) {
-                if (!scooter.isAvailable()) {
-                    System.out.println("Le scooter est déjà en location.");
-                } else {
-                    System.out.println("Le scooter est disponible pour la location.");
-                }
-                return;
-            }
-        }
-    }
-    public void RetournerScooter(int idScoot){
+
+    public void RetournerScooter(int idScoot, double kilometrage){
         if (!ScooterExist(idScoot)) {
             System.err.println("Le scooter n'existe pas!");
             return;
@@ -144,8 +129,11 @@ public class Parc_Scooter {
                 if (scooter.isAvailable()) {
                     System.out.println("Le scooter n'etait pas en location.");
                 } else {
-                    
-                    System.out.println("Le scooter est disponible pour la location.");
+                    Date date_de_fin = new Date();
+                    scooter.getLocations().get(scooter.getLocations().size() - 1).setDate_fin(date_de_fin);
+                    scooter.getLocations().get(scooter.getLocations().size() - 1).setKilometrage(kilometrage);
+                    System.out.println("Le retour est effectué avec succès.");
+                    System.out.println("Le scooter est maintenant disponible pour la location.");
                 }
                 return;
             }
@@ -172,7 +160,49 @@ public class Parc_Scooter {
                 }
                 return;
            
+            }
         }
     }
-}
+    public void EtatParc(){
+        for( Scooter scooter : scooters){
+            System.out.println("Id du scooter: "+scooter.getIdScoot()+" Modele: "+scooter.getModele()+" kilometrage: "+scooter.getKilometrage()+" Etat de disponibilite: "+scooter.isAvailable());
+        }
+    }
+
+
+    public void SaisiParc(){
+        int NbrScoots=0;
+        int NbrScootsinLoc=0;
+        int NbrScootsinDisp=0;
+        float KilMoyen=0;
+        for(Scooter scooter : scooters){
+            NbrScoots++;
+        }
+         System.err.println("Le nombre totale de Scooters: "+NbrScoots);
+
+        for(Scooter scooter : scooters){
+            if(!scooter.isAvailable()){
+                NbrScootsinLoc++;
+                System.out.println("Identifiant du Scooter: "+scooter.getIdScoot());
+            }
+        }
+        System.out.println("Le nombre totale de scooter en location: "+NbrScootsinLoc);
+
+        for(Scooter scooter : scooters){
+            if(scooter.isAvailable()){
+                System.out.println("Identifiant du Scooter: "+scooter.getIdScoot());
+            }
+            KilMoyen+=scooter.getKilometrage();
+        }
+        NbrScootsinDisp = NbrScoots - NbrScootsinLoc;
+        System.out.println("Le nombre totale de scooter en location: "+NbrScootsinDisp);
+
+        if (NbrScoots > 0) {
+            KilMoyen /= NbrScoots;
+            System.out.println("Le kilométrage moyen des scooters de ce parc est : " + KilMoyen);
+        } else {
+            System.out.println("Aucun scooter dans ce parc pour calculer le kilometrage.");
+        }
+
+    }
 }

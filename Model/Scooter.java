@@ -62,5 +62,7 @@ public class Scooter {
         }
         return totalKilometrage;
     }
-    
+    public List<Location> getLocations() {
+        return locations;
+    }
 }
