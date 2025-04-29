@@ -18,7 +18,7 @@ public class Scooter {
 
     public void addLocations(Location location){
         if (location == null) {
-            System.out.println("La location que vous avez ajouté est null !");
+            System.err.println("La location que vous avez ajouté est null !");
         }
         else{
             locations.add(location);

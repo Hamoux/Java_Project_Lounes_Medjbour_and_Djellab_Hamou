@@ -24,7 +24,7 @@ public class Client {
 
     public void addLocations(Location location){
         if (location == null) {
-            System.out.println("La location que vous avez ajouté est null !");
+            System.err.println("La location que vous avez ajouté est null !");
         }
         
         locations.add(location);}
@@ -33,7 +33,7 @@ public class Client {
 
         public void addPermisses(Permis permis){
             if (permis == null) {
-                System.out.println("Le permis que vous avez ajouté est null !");
+                System.err.println("Le permis que vous avez ajouté est null !");
             }
             
             permisses.add(permis);}

@@ -49,7 +49,7 @@ public class Permis {
         if (modele != null) {
             modeles.add(modele);
         } else {
-            System.out.println("Le modele que tu as ajoutée est null");
+            System.err.println("Le modele que tu as ajoutée est null");
         }
     }
 
@@ -57,7 +57,7 @@ public class Permis {
         if (client != null) {
             clients.add(client);
         } else {
-            System.out.println("Le client que tu as ajouté est null");
+            System.err.println("Le client que tu as ajouté est null");
         }
 
     }

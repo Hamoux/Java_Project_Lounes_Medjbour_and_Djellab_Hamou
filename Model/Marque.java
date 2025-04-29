@@ -21,14 +21,14 @@ public class Marque {
 
     public void addParc_scooter(Parc_Scooter parc){
         if (parc == null) {
-            System.out.println("La parc que vous avez ajouté est null !");
+            System.err.println("La parc que vous avez ajouté est null !");
         }
         parcs_Scooters.add(parc);
     }
     
     public void addModels(Modele modele){
         if (modele == null) {
-            System.out.println("Le modele que vous avez ajouté est null !");
+            System.err.println("Le modele que vous avez ajouté est null !");
         }
         modeles.add(modele);}
 

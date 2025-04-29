@@ -68,7 +68,7 @@ public class Parc_Scooter {
         if (scooter != null) {
             scooters.add(scooter);
         } else {
-            System.out.println("Le scooter que tu as ajouté est null");
+            System.err.println("Le scooter que tu as ajouté est null");
         }
     }
 
@@ -76,7 +76,7 @@ public class Parc_Scooter {
         if (marque != null) {
             marques.add(marque);
         } else {
-            System.out.println("La marque que tu as ajoutée est null");
+            System.err.println("La marque que tu as ajoutée est null");
         }
     }
 
@@ -84,7 +84,7 @@ public class Parc_Scooter {
         if (client != null) {
             clients.add(client);
         } else {
-            System.out.println("Le client que tu as ajouté est null");
+            System.err.println("Le client que tu as ajouté est null");
         }
     }
     public void printData() {
@@ -117,7 +117,7 @@ public class Parc_Scooter {
     }
     public void LoueScooter(int idScoot){
         if (!ScooterExist(idScoot)) {
-            System.out.println("Le scooter n'existe pas!");
+            System.err.println("Le scooter n'existe pas!");
             return;
         }
     
@@ -134,7 +134,7 @@ public class Parc_Scooter {
     }
     public void RetournerScooter(int idScoot){
         if (!ScooterExist(idScoot)) {
-            System.out.println("Le scooter n'existe pas!");
+            System.err.println("Le scooter n'existe pas!");
             return;
         }
     
@@ -143,6 +143,7 @@ public class Parc_Scooter {
                 if (scooter.isAvailable()) {
                     System.out.println("Le scooter n'etait pas en location.");
                 } else {
+                    
                     System.out.println("Le scooter est disponible pour la location.");
                 }
                 return;
@@ -151,25 +152,25 @@ public class Parc_Scooter {
     }
     public void EtatScooter(int idScoot){
         if (!ScooterExist(idScoot)) {
-            System.out.println("Le scooter n'existe pas!");
+            System.err.println("Le scooter n'existe pas!");
             return;
         }
 
     
         for (Scooter scooter : scooters) {
             if (scooter.getIdScoot() == idScoot) {
+                System.out.println("Modele : "+scooter.getModele());
+                System.out.println(" Numero Identificaiton : "+ scooter.getIdScoot());
+                System.out.println(" Kilometrage : "+scooter.getKilometrage());
                 if (!scooter.isAvailable()) {
-                    System.out.println("Modele : "+scooter.getModele());
-                    System.out.println(" Numero Identificaiton : "+ scooter.getIdScoot());
-                    System.out.println(" Kilometrage : "+scooter.getKilometrage());
-                    if (scooter.isAvailable()) {
-                        System.err.println("Etat de disponibilité : Disponible");
-                    }
-                    else{
-                        System.err.println("Etat de disponibilité : Disponible");
-                    }
-                    return;
-            }
+                    System.out.println("Etat de disponibilité : Non disponible");
+                 }
+                    
+                else{
+                        System.out.println("Etat de disponibilité : Disponible");
+                }
+                return;
+           
         }
     }
 }

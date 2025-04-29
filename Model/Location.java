@@ -12,6 +12,7 @@ public class Location {
 
     
     public Location(int id, Date date_debut, Date date_fin, Scooter scooter, Client client) {
+        this.kilometrage = 0;
         this.idLoc = id;
         this.date_debut = date_debut;
         this.date_fin = date_fin;

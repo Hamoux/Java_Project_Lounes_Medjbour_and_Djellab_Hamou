@@ -77,7 +77,7 @@ public class Modele {
         if (scooter != null) {
             scooters.add(scooter);
         } else {
-            System.out.println("Le scooter que tu as ajouté est null");
+            System.err.println("Le scooter que tu as ajouté est null");
         }
     }
 
@@ -85,7 +85,7 @@ public class Modele {
         if (permis != null) {
             permisses.add(permis);
         } else {
-            System.out.println("Le permis que tu as ajouté est null");
+            System.err.println("Le permis que tu as ajouté est null");
         }
     }
     public void printData() {
