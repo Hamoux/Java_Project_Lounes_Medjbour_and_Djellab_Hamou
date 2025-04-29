@@ -118,27 +118,6 @@ public class Parc_Scooter {
         return false;
     }
 
-    public void RetournerScooter(int idScoot, double kilometrage){
-        if (!ScooterExist(idScoot)) {
-            System.err.println("Le scooter n'existe pas!");
-            return;
-        }
-    
-        for (Scooter scooter : scooters) {
-            if (scooter.getIdScoot() == idScoot) {
-                if (scooter.isAvailable()) {
-                    System.out.println("Le scooter n'etait pas en location.");
-                } else {
-                    Date date_de_fin = new Date();
-                    scooter.getLocations().get(scooter.getLocations().size() - 1).setDate_fin(date_de_fin);
-                    scooter.getLocations().get(scooter.getLocations().size() - 1).setKilometrage(kilometrage);
-                    System.out.println("Le retour est effectué avec succès.");
-                    System.out.println("Le scooter est maintenant disponible pour la location.");
-                }
-                return;
-            }
-        }
-    }
     public void EtatScooter(int idScoot){
         if (!ScooterExist(idScoot)) {
             System.err.println("Le scooter n'existe pas!");
@@ -165,7 +144,7 @@ public class Parc_Scooter {
     }
     public void EtatParc(){
         for( Scooter scooter : scooters){
-            System.out.println("Id du scooter: "+scooter.getIdScoot()+" Modele: "+scooter.getModele()+" kilometrage: "+scooter.getKilometrage()+" Etat de disponibilite: "+scooter.isAvailable());
+            System.out.println("Id du scooter: "+scooter.getIdScoot()+" Modele: "+scooter.getModele()+" kilometrage: "+scooter.getKilometrage()+"km"+ " Etat de disponibilite: "+scooter.isAvailable());
         }
     }
 

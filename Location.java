@@ -37,7 +37,7 @@ public class Location {
     public void setIdLoc(int id){ this.idLoc = id;}
 
     public void printData() {
-        System.out.println("Location [id: " + idLoc + ", date_debut: " + date_debut + ", date_fin: " + date_fin + ", kilometrage: " + kilometrage +  ", scooter_id: " + scooter.getIdScoot() + ", client: " + client.getNom() + " "+ client.getPrenom() + "]" );
+        System.out.println("Location [id: " + idLoc + ", date_debut: " + date_debut + ", date_fin: " + date_fin + ", kilometrage: " + kilometrage + "km" +  ", scooter_id: " + scooter.getIdScoot() + ", client: " + client.getNom() + " "+ client.getPrenom() + "]" );
     }
     
     

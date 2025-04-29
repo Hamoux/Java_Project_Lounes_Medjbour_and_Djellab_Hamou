@@ -70,7 +70,7 @@ public class Client {
         }
         System.out.println();
     }
-    public void LoueScooter(int idScoot){
+    public void LouerScooter(int idScoot){
         if (!parc.ScooterExist(idScoot)) {
             System.err.println("Le scooter n'existe pas!");
             return;
@@ -87,12 +87,35 @@ public class Client {
                         this
                     );
                     this.addLocations(location2);
+                    scooter.addLocations(location2);
                     System.out.println("La location est effectuée avec succès.");
                 }
                 return;
             }
         }
     }
+    public void RetournerScooter(int idScoot, double kilometrage){
+        if (!parc.ScooterExist(idScoot)) {
+            System.err.println("Le scooter n'existe pas!");
+            return;
+        }
     
+        for (Scooter scooter : parc.getScooters()) {
+            if (scooter.getIdScoot() == idScoot) {
+                if (scooter.isAvailable()) {
+                    System.out.println("Le scooter n'etait pas en location.");
+                } else {
+                    Date date_de_fin = new Date();
+                    scooter.getLocations().get(scooter.getLocations().size() - 1).setDate_fin(date_de_fin);
+                    scooter.getLocations().get(scooter.getLocations().size() - 1).setKilometrage(kilometrage);
+                    this.locations.get(this.locations.size() - 1).setDate_fin(date_de_fin);
+                    this.locations.get(this.locations.size() - 1).setKilometrage(kilometrage);
+                    System.out.println("Le retour est effectué avec succès.");
+                    System.out.println("Le scooter est maintenant disponible pour la location.");
+                }
+                return;
+            }
+        }
+    }
 }
 

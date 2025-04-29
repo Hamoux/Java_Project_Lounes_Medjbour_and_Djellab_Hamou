@@ -46,15 +46,14 @@ public class Scooter {
         System.out.println(); 
     }
     public boolean isAvailable() {
-        Date currentDate = new Date(); //la date actuelle
-        for (Location location : locations) {
-            if (location.getDate_debut().compareTo(currentDate) <= 0 &&
-                location.getDate_fin().compareTo(currentDate) >= 0) {
-                return false;
-            }
+        if (locations.isEmpty()) {
+            return true; // jamais louer = available
         }
-        return true;
+    
+        Location lastLocation = locations.get(locations.size() - 1);
+        return lastLocation.getDate_fin() != null; // si date_fin n'est pas null, alors il est disponible
     }
+    
     public int getKilometrage() {
         int totalKilometrage = 0;
         for (Location location : locations) {

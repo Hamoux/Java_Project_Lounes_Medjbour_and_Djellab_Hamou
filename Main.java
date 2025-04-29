@@ -68,7 +68,7 @@ public class Main {
             client2
         );
         client2.addLocations(location2);
-
+/*
         // Impression des données
         System.out.println("\n--- Marques ---");
         BMW.printData();
@@ -105,6 +105,20 @@ public class Main {
         System.out.println("\n--- Locations ---");
         location1.printData();
         location2.printData();
+ */     
+        System.out.println("etat scooter 1 avant la location");
+        parc1.EtatScooter(1);
+        client1.LouerScooter(1);
+        client1.LouerScooter(10);
+        client1.LouerScooter(1);
+        client1.printData();
+        client1.printData();
+        parc1.printData();
+        client1.RetournerScooter(1, 20);
+        System.out.println("etat scooter 1 apres le retour");
+        parc1.EtatScooter(1);
+        parc1.EtatParc();
+        parc1.SaisiParc();
     }
 }
 
