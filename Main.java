@@ -112,13 +112,16 @@ public class Main {
         client1.LouerScooter(10);
         client1.LouerScooter(1);
         client1.printData();
-        client1.printData();
+        parc1.EtatParc();
+        parc1.SaisiParc();
         parc1.printData();
         client1.RetournerScooter(1, 20);
         System.out.println("etat scooter 1 apres le retour");
         parc1.EtatScooter(1);
         parc1.EtatParc();
         parc1.SaisiParc();
+        client1.printData();
+        parc1.printData();
     }
 }
 

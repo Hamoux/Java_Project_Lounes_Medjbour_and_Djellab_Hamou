@@ -127,9 +127,9 @@ public class Parc_Scooter {
     
         for (Scooter scooter : scooters) {
             if (scooter.getIdScoot() == idScoot) {
-                System.out.println("Modele : "+scooter.getModele());
+                System.out.println("Modele : "+scooter.getModele().getModeleNom());
                 System.out.println(" Numero Identificaiton : "+ scooter.getIdScoot());
-                System.out.println(" Kilometrage : "+scooter.getKilometrage());
+                System.out.println(" Kilometrage : "+scooter.getKilometrage() + "km");
                 if (!scooter.isAvailable()) {
                     System.out.println("Etat de disponibilité : Non disponible");
                  }
@@ -144,7 +144,7 @@ public class Parc_Scooter {
     }
     public void EtatParc(){
         for( Scooter scooter : scooters){
-            System.out.println("Id du scooter: "+scooter.getIdScoot()+" Modele: "+scooter.getModele()+" kilometrage: "+scooter.getKilometrage()+"km"+ " Etat de disponibilite: "+scooter.isAvailable());
+            System.out.println("Id du scooter: "+scooter.getIdScoot()+" Modele: "+scooter.getModele().getModeleNom()+" kilometrage: "+scooter.getKilometrage()+"km"+ " Etat de disponibilite: "+scooter.isAvailable());
         }
     }
 
@@ -174,11 +174,11 @@ public class Parc_Scooter {
             KilMoyen+=scooter.getKilometrage();
         }
         NbrScootsinDisp = NbrScoots - NbrScootsinLoc;
-        System.out.println("Le nombre totale de scooter en location: "+NbrScootsinDisp);
+        System.out.println("Le nombre totale de scooter disponible pour la location: "+NbrScootsinDisp);
 
         if (NbrScoots > 0) {
             KilMoyen /= NbrScoots;
-            System.out.println("Le kilométrage moyen des scooters de ce parc est : " + KilMoyen);
+            System.out.println("Le kilométrage moyen des scooters de ce parc est : " + KilMoyen + "km");
         } else {
             System.out.println("Aucun scooter dans ce parc pour calculer le kilometrage.");
         }
