@@ -57,7 +57,6 @@ public class Main {
 
         Location location1 = new Location(
             new Date(2025 - 1900, Calendar.APRIL, 1),
-            new Date(2025 - 1900, Calendar.APRIL, 5),
             Scot1,
             client1
         );
@@ -65,7 +64,6 @@ public class Main {
 
         Location location2 = new Location(
             new Date(2025 - 1900, Calendar.APRIL, 3),
-            new Date(2025 - 1900, Calendar.APRIL, 6),
             Scot2,
             client2
         );
@@ -108,5 +106,5 @@ public class Main {
         location1.printData();
         location2.printData();
     }
-
 }
+

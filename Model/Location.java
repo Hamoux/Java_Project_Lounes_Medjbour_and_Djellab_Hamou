@@ -12,11 +12,10 @@ public class Location {
     private Client client;
 
     
-    public Location(Date date_debut, Date date_fin, Scooter scooter, Client client) {
+    public Location(Date date_debut, Scooter scooter, Client client) {
         this.kilometrage = 0;
         this.idLoc = inc++;
         this.date_debut = date_debut;
-        this.date_fin = date_fin;
         this.scooter = scooter;
         this.client = client;
     }
