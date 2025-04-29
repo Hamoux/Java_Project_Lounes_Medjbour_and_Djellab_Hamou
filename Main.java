@@ -61,7 +61,6 @@ public class Main {
             1,
             new Date(2025 - 1900, Calendar.APRIL, 1),
             new Date(2025 - 1900, Calendar.APRIL, 5),
-            120.5,
             Scot1,
             client1
         );
@@ -71,7 +70,6 @@ public class Main {
             0,
             new Date(2025 - 1900, Calendar.APRIL, 3),
             new Date(2025 - 1900, Calendar.APRIL, 6),
-            98.3,
             Scot2,
             client2
         );

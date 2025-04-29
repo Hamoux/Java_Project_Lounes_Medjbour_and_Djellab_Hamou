@@ -54,5 +54,12 @@ public class Scooter {
         }
         return true;
     }
+    public int getKilometrage() {
+        int totalKilometrage = 0;
+        for (Location location : locations) {
+            totalKilometrage += location.getKilometrage();
+        }
+        return totalKilometrage;
+    }
     
 }
