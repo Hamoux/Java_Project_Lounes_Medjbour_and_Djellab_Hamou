@@ -3,6 +3,7 @@ import java.util.*;
 import java.util.Date;
 
 public class Location {
+    private static int inc = 1;
     private int idLoc;
     private Date date_debut;
     private Date date_fin;
@@ -11,10 +12,10 @@ public class Location {
     private Client client;
 
     
-    public Location(int id, Date date_debut, Date date_fin, Scooter scooter, Client client) {
-        this.idLoc = id;
+    public Location(Date date_debut, Scooter scooter, Client client) {
+        this.kilometrage = 0;
+        this.idLoc = inc++;
         this.date_debut = date_debut;
-        this.date_fin = date_fin;
         this.scooter = scooter;
         this.client = client;
     }

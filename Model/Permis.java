@@ -3,13 +3,14 @@ import java.util.*;
 
 public class Permis {
 
+    private static int inc = 1;
     private int id_permis;
     private String type_permis;
     private List<Client> clients = new ArrayList<Client>();
     private List<Modele> modeles = new ArrayList<Modele>();
 
-    public Permis(int id, String type) {
-        this.id_permis = id;
+    public Permis(String type) {
+        this.id_permis = inc++;
         this.type_permis = type;
     }
 
@@ -49,7 +50,7 @@ public class Permis {
         if (modele != null) {
             modeles.add(modele);
         } else {
-            System.out.println("Le modele que tu as ajoutée est null");
+            System.err.println("Le modele que tu as ajoutée est null");
         }
     }
 
@@ -57,7 +58,7 @@ public class Permis {
         if (client != null) {
             clients.add(client);
         } else {
-            System.out.println("Le client que tu as ajouté est null");
+            System.err.println("Le client que tu as ajouté est null");
         }
 
     }
