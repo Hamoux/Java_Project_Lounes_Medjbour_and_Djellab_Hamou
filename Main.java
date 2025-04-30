@@ -82,7 +82,7 @@ public class Main {
         Permis permisB = findOrCreate(allObjects, new Permis("B"), 2);
 
         Client client1 = findOrCreate(allObjects, new Client("Djellab", 123456789, "Hamou", new Date(1995 - 1900, Calendar.JANUARY, 10), parc1), 1);
-        Client client2 = findOrCreate(allObjects, new Client("Medjbour", 987654321, "Lounes", new Date(1990 - 1900, Calendar.MARCH, 25), parc2), 2);
+        Client client2 = findOrCreate(allObjects, new Client("Medjbour", 987654321, "Lounes", new Date(1990 - 1900, Calendar.MARCH, 25), parc1), 2);
 
         // Add objects to their respective collections
         if(!dataFile.exists()){
@@ -92,7 +92,7 @@ public class Main {
 
         parc2.addMarque(Yamaha);
         parc1.addScooter(Scot2);
-        parc2.addClient(client2);
+        parc1.addClient(client2);
 
         parc3.addMarque(Honda);
         parc1.addScooter(Scot3);

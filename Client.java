@@ -75,9 +75,11 @@ public class Client implements Serializable {
             System.err.println("Le scooter n'existe pas!");
             return;
         }
-        else if(locations.get(locations.size() - 1).getDate_fin() == null){
+        else if(locations.size() != 0){
+            if (locations.get(locations.size() - 1).getDate_fin() == null) {
             System.err.println("Vous avez deja loué un scooter!");
             return; 
+        }
         }
     
         for (Scooter scooter : parc.getScooters()) {
@@ -109,13 +111,18 @@ public class Client implements Serializable {
                 if (scooter.isAvailable()) {
                     System.out.println("Le scooter n'etait pas en location.");
                 } else {
-                    Date date_de_fin = new Date();
-                    scooter.getLocations().get(scooter.getLocations().size() - 1).setDate_fin(date_de_fin);
-                    scooter.getLocations().get(scooter.getLocations().size() - 1).setKilometrage(kilometrage);
-                    this.locations.get(this.locations.size() - 1).setDate_fin(date_de_fin);
-                    this.locations.get(this.locations.size() - 1).setKilometrage(kilometrage);
-                    System.out.println("Le retour est effectué avec succès.");
-                    System.out.println("Le scooter est maintenant disponible pour la location.");
+
+                    if(scooter.getLocations().size() != 0 && this != scooter.getLocations().get(scooter.getLocations().size() - 1).getClient()  )
+                    {System.out.println("Ce scooter a été loué par un autre utilisateur. Vous ne pouvez pas le retourner.");}
+                    else{
+                        Date date_de_fin = new Date();
+                        scooter.getLocations().get(scooter.getLocations().size() - 1).setDate_fin(date_de_fin);
+                        scooter.getLocations().get(scooter.getLocations().size() - 1).setKilometrage(kilometrage);
+                        this.locations.get(this.locations.size() - 1).setDate_fin(date_de_fin);
+                        this.locations.get(this.locations.size() - 1).setKilometrage(kilometrage);
+                        System.out.println("Le retour est effectué avec succès.");
+                        System.out.println("Le scooter est maintenant disponible pour la location.");
+                    }
                 }
                 return;
             }
