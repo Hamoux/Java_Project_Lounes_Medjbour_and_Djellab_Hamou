@@ -75,6 +75,10 @@ public class Client implements Serializable {
             System.err.println("Le scooter n'existe pas!");
             return;
         }
+        else if(locations.get(locations.size() - 1).getDate_fin() == null){
+            System.err.println("Vous avez deja loué un scooter!");
+            return; 
+        }
     
         for (Scooter scooter : parc.getScooters()) {
             if (scooter.getId() == idScoot) {
