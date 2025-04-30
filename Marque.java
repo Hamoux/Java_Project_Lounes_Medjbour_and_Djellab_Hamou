@@ -1,9 +1,9 @@
 
 import java.io.*;
 import java.util.*;
+import java.io.Serializable;
 
-
-public class Marque {
+public class Marque implements Serializable {
     private static int inc = 1;
     private int idMark;
 
@@ -33,7 +33,7 @@ public class Marque {
         modeles.add(modele);}
 
 
-    public int getIdMark (){ return this.idMark;}
+    public int getId (){ return this.idMark;}
     public String getNomMark (){ return this.nomMark;}
 
     public void setNomMark(int mark){this.idMark = mark;}

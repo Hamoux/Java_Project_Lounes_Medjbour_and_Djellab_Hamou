@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
-
-public class Parc_Scooter {
+import java.io.Serializable;
+public class Parc_Scooter implements Serializable {
 
     private static int inc = 1;
     private int idPark;
@@ -18,7 +18,7 @@ public class Parc_Scooter {
         this.capacite = capacite;
     }
 
-    public int getIdPark() {
+    public int getId() {
         return idPark;
     }
 
@@ -99,7 +99,7 @@ public class Parc_Scooter {
         System.out.println();
         System.out.print("Scooters: ");
         for (int i = 0; i < scooters.size(); i++) {
-            System.out.print(scooters.get(i).getIdScoot());
+            System.out.print(scooters.get(i).getId());
             if (i < scooters.size() - 1) System.out.print(", ");
         }
         System.out.println();
@@ -112,7 +112,7 @@ public class Parc_Scooter {
     }
     public boolean ScooterExist(int idScoot){
         for(Scooter scooter : scooters){
-            if(scooter.getIdScoot() == idScoot)
+            if(scooter.getId() == idScoot)
                 return true;
         }
         return false;
@@ -126,9 +126,9 @@ public class Parc_Scooter {
 
     
         for (Scooter scooter : scooters) {
-            if (scooter.getIdScoot() == idScoot) {
+            if (scooter.getId() == idScoot) {
                 System.out.println("Modele : "+scooter.getModele().getModeleNom());
-                System.out.println(" Numero Identificaiton : "+ scooter.getIdScoot());
+                System.out.println(" Numero Identificaiton : "+ scooter.getId());
                 System.out.println(" Kilometrage : "+scooter.getKilometrage() + "km");
                 if (!scooter.isAvailable()) {
                     System.out.println("Etat de disponibilité : Non disponible");
@@ -144,7 +144,7 @@ public class Parc_Scooter {
     }
     public void EtatParc(){
         for( Scooter scooter : scooters){
-            System.out.println("Id du scooter: "+scooter.getIdScoot()+" Modele: "+scooter.getModele().getModeleNom()+" kilometrage: "+scooter.getKilometrage()+"km"+ " Etat de disponibilite: "+scooter.isAvailable());
+            System.out.println("Id du scooter: "+scooter.getId()+" Modele: "+scooter.getModele().getModeleNom()+" kilometrage: "+scooter.getKilometrage()+"km"+ " Etat de disponibilite: "+scooter.isAvailable());
         }
     }
 
@@ -162,14 +162,14 @@ public class Parc_Scooter {
         for(Scooter scooter : scooters){
             if(!scooter.isAvailable()){
                 NbrScootsinLoc++;
-                System.out.println("Identifiant du Scooter: "+scooter.getIdScoot());
+                System.out.println("Identifiant du Scooter: "+scooter.getId());
             }
         }
         System.out.println("Le nombre totale de scooter en location: "+NbrScootsinLoc);
 
         for(Scooter scooter : scooters){
             if(scooter.isAvailable()){
-                System.out.println("Identifiant du Scooter: "+scooter.getIdScoot());
+                System.out.println("Identifiant du Scooter: "+scooter.getId());
             }
             KilMoyen+=scooter.getKilometrage();
         }

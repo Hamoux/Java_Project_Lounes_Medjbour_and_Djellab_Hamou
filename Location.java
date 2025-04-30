@@ -1,8 +1,8 @@
 import java.io.*;
 import java.util.*;
 import java.util.Date;
-
-public class Location {
+import java.io.Serializable;
+public class Location implements Serializable {
     private static int inc = 1;
     private int idLoc;
     private Date date_debut;
@@ -26,7 +26,7 @@ public class Location {
     public double getKilometrage() { return this.kilometrage; } 
     public Scooter getScooter(){return this.scooter; }
     public Client  getClient(){ return this.client;}
-    public int  getIdLoc(){ return this.idLoc;}
+    public int  getId(){ return this.idLoc;}
 
     
     public void setDate_debut(Date date_debut) { this.date_debut = date_debut; }
@@ -37,7 +37,7 @@ public class Location {
     public void setIdLoc(int id){ this.idLoc = id;}
 
     public void printData() {
-        System.out.println("Location [id: " + idLoc + ", date_debut: " + date_debut + ", date_fin: " + date_fin + ", kilometrage: " + kilometrage + "km " +  ", scooter_id: " + scooter.getIdScoot() + ", client: " + client.getNom() + " "+ client.getPrenom() + "]" );
+        System.out.println("Location [id: " + idLoc + ", date_debut: " + date_debut + ", date_fin: " + date_fin + ", kilometrage: " + kilometrage + "km " +  ", scooter_id: " + scooter.getId() + ", client: " + client.getNom() + " "+ client.getPrenom() + "]" );
     }
     
     

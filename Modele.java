@@ -1,7 +1,8 @@
 
 import java.io.*;
 import java.util.*;
-public class Modele {
+import java.io.Serializable;
+public class Modele implements Serializable {
     private static int inc = 1;
     private int idModele;
     private String modeleNom;
@@ -19,7 +20,7 @@ public class Modele {
         this.marque = marque;
     }
 
-    public int getIdModele() {
+    public int getId() {
         return idModele;
     }
 
@@ -94,7 +95,7 @@ public class Modele {
         marque.getNomMark();
         System.out.print("Scooters: ");
         for (int i = 0; i < scooters.size(); i++) {
-            System.out.print(scooters.get(i).getIdScoot());
+            System.out.print(scooters.get(i).getId());
             if (i < scooters.size() - 1) System.out.print(", ");
         }
         System.out.println();

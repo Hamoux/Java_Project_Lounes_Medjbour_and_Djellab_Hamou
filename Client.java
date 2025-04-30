@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
-
-public class Client {
+import java.io.Serializable;
+public class Client implements Serializable {
     private static int inc = 1;
     private int id;
     private String nom;
@@ -65,7 +65,7 @@ public class Client {
         System.out.println();
         System.out.print("Locations: ");
         for (int i = 0; i < locations.size(); i++) {
-            System.out.print(locations.get(i).getIdLoc());
+            System.out.print(locations.get(i).getId());
             if (i < locations.size() - 1) System.out.print(", ");
         }
         System.out.println();
@@ -77,7 +77,7 @@ public class Client {
         }
     
         for (Scooter scooter : parc.getScooters()) {
-            if (scooter.getIdScoot() == idScoot) {
+            if (scooter.getId() == idScoot) {
                 if (!scooter.isAvailable()) {
                     System.out.println("Le scooter est déjà en location.");
                 } else {
@@ -101,7 +101,7 @@ public class Client {
         }
     
         for (Scooter scooter : parc.getScooters()) {
-            if (scooter.getIdScoot() == idScoot) {
+            if (scooter.getId() == idScoot) {
                 if (scooter.isAvailable()) {
                     System.out.println("Le scooter n'etait pas en location.");
                 } else {

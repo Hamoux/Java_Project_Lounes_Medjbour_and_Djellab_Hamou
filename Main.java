@@ -2,126 +2,99 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+    public static void saveAllData(List<Object> allObjects) {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("Data.txt"))) {
+            out.writeObject(allObjects);
+            System.out.println("Data saved successfully.");
+        } catch (IOException e) {
+            System.err.println("Error saving data: " + e.getMessage());
+        }
+    }
+
+    public static List<Object> loadAllData() {
+        List<Object> loadedObjects = new ArrayList<>();
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Data.txt"))) {
+            Object obj = in.readObject();
+            if (obj instanceof List) {
+                loadedObjects = (List<Object>) obj;
+            } else {
+                System.err.println("Error: Data in file is not a List<Object>.");
+            }
+            System.out.println("Data loaded successfully.");
+        } catch (IOException | ClassNotFoundException e) {
+            System.err.println("Error loading data: " + e.getMessage());
+        }
+        return loadedObjects;
+    }
+
+    public static <T> T findOrCreate(List<Object> allObjects, T newObject, int id) {
+        for (Object obj : allObjects) {
+            if (obj.getClass() == newObject.getClass()) {
+                try {
+                    // Check if the IDs match
+                    int existingId = (int) obj.getClass().getMethod("getId").invoke(obj);
+                    if (existingId == id) {
+                        return (T) obj; // Return the existing object
+                    }
+                } catch (Exception e) {
+                    System.err.println("Error comparing objects: " + e.getMessage());
+                }
+            }
+        }
+        // If not found, add the new object to the list and return it
+        allObjects.add(newObject);
+        return newObject;
+    }
 
     public static void main(String[] args) {
+        List<Object> allObjects;
 
-        // Création des marques, modèles, parcs et scooters
-        Marque BMW = new Marque("BMW");
-        Modele MP40 = new Modele("MP40", "v_twin", 150, BMW);
-        BMW.addModels(MP40);
-        Parc_Scooter parc1 = new Parc_Scooter("Louvre", 200);
-        parc1.addMarque(BMW);
-        Scooter Scot1 = new Scooter(MP40, parc1);
-        parc1.addScooter(Scot1);
-        MP40.addScooter(Scot1);
+        // Load existing data if available
+        File dataFile = new File("Data.txt");
+        if (dataFile.exists()) {
+            allObjects = loadAllData();
+        } else {
+            allObjects = new ArrayList<>();
+        }
 
-        Marque Yamaha = new Marque("Yamaha");
-        Modele XMax = new Modele("XMax", "parallel_twin", 180, Yamaha);
-        Yamaha.addModels(XMax);
-        Parc_Scooter parc2 = new Parc_Scooter("Montparnasse", 150);
-        parc2.addMarque(Yamaha);
-        Scooter Scot2 = new Scooter(XMax, parc2);
-        parc2.addScooter(Scot2);
-        XMax.addScooter(Scot2);
+        // Create or update objects dynamically
+        Marque BMW = findOrCreate(allObjects, new Marque("BMW"), 1);
+        Modele MP40 = findOrCreate(allObjects, new Modele("MP40", "v_twin", 150, BMW), 1);
+        Parc_Scooter parc1 = findOrCreate(allObjects, new Parc_Scooter("Louvre", 200), 1);
+        Scooter Scot1 = findOrCreate(allObjects, new Scooter(MP40, parc1), 1);
 
-        Marque Honda = new Marque("Honda");
-        Modele PCX = new Modele("PCX", "single", 125, Honda);
-        Honda.addModels(PCX);
-        Parc_Scooter parc3 = new Parc_Scooter("Châtelet", 100);
-        parc3.addMarque(Honda);
-        Scooter Scot3 = new Scooter(PCX, parc3);
-        parc3.addScooter(Scot3);
-        PCX.addScooter(Scot3);
+        Marque Yamaha = findOrCreate(allObjects, new Marque("Yamaha"), 2);
+        Modele XMax = findOrCreate(allObjects, new Modele("XMax", "parallel_twin", 180, Yamaha), 2);
+        Parc_Scooter parc2 = findOrCreate(allObjects, new Parc_Scooter("Montparnasse", 150), 2);
+        Scooter Scot2 = findOrCreate(allObjects, new Scooter(XMax, parc2), 2);
 
-        Marque Ducati = new Marque("Ducati");
-        Modele Monster = new Modele("Monster", "v_twin", 200, Ducati);
-        Ducati.addModels(Monster);
-        Parc_Scooter parc4 = new Parc_Scooter("La Défense", 250);
-        parc4.addMarque(Ducati);
-        Scooter Scot4 = new Scooter(Monster, parc4);
-        parc4.addScooter(Scot4);
-        Monster.addScooter(Scot4);
+        Marque Honda = findOrCreate(allObjects, new Marque("Honda"), 3);
+        Modele PCX = findOrCreate(allObjects, new Modele("PCX", "single", 125, Honda), 3);
+        Parc_Scooter parc3 = findOrCreate(allObjects, new Parc_Scooter("Châtelet", 100), 3);
+        Scooter Scot3 = findOrCreate(allObjects, new Scooter(PCX, parc3), 3);
 
-        // Création des permis
-        Permis permisA = new Permis("A");
-        Permis permisB = new Permis("B");
+        Marque Ducati = findOrCreate(allObjects, new Marque("Ducati"), 4);
+        Modele Monster = findOrCreate(allObjects, new Modele("Monster", "v_twin", 200, Ducati), 4);
+        Parc_Scooter parc4 = findOrCreate(allObjects, new Parc_Scooter("La Défense", 250), 4);
+        Scooter Scot4 = findOrCreate(allObjects, new Scooter(Monster, parc4), 4);
 
-        // Création des clients et ajout manuel des permis
-        Client client1 = new Client("Djellab", 123456789, "Hamou", new Date(1995 - 1900, Calendar.JANUARY, 10), parc1);
-        client1.addPermisses(permisA);
-        parc1.addClient(client1);
+        Permis permisA = findOrCreate(allObjects, new Permis("A"), 1);
+        Permis permisB = findOrCreate(allObjects, new Permis("B"), 2);
 
-        Client client2 = new Client("Medjbour", 987654321, "Lounes", new Date(1990 - 1900, Calendar.MARCH, 25), parc2);
-        client2.addPermisses(permisB);
-        parc2.addClient(client2);
+        Client client1 = findOrCreate(allObjects, new Client("Djellab", 123456789, "Hamou", new Date(1995 - 1900, Calendar.JANUARY, 10), parc1), 1);
+        Client client2 = findOrCreate(allObjects, new Client("Medjbour", 987654321, "Lounes", new Date(1990 - 1900, Calendar.MARCH, 25), parc2), 2);
 
-        Location location1 = new Location(
-            new Date(2025 - 1900, Calendar.APRIL, 1),
-            Scot1,
-            client1
-        );
-        client1.addLocations(location1);
+        Location location1 = findOrCreate(allObjects, new Location(new Date(2025 - 1900, Calendar.APRIL, 1), Scot1, client1), 1);
+        Location location2 = findOrCreate(allObjects, new Location(new Date(2025 - 1900, Calendar.APRIL, 3), Scot2, client2), 2);
 
-        Location location2 = new Location(
-            new Date(2025 - 1900, Calendar.APRIL, 3),
-            Scot2,
-            client2
-        );
-        client2.addLocations(location2);
-/*
-        // Impression des données
-        System.out.println("\n--- Marques ---");
-        BMW.printData();
-        Yamaha.printData();
-        Honda.printData();
-        Ducati.printData();
-
-        System.out.println("\n--- Modèles ---");
-        MP40.printData();
-        XMax.printData();
-        PCX.printData();
-        Monster.printData();
-
-        System.out.println("\n--- Parcs ---");
+        // Perform operations on objects
         parc1.printData();
         parc2.printData();
         parc3.printData();
         parc4.printData();
 
-        System.out.println("\n--- Scooters ---");
-        Scot1.printData();
-        Scot2.printData();
-        Scot3.printData();
-        Scot4.printData();
-
-        System.out.println("\n--- Permis ---");
-        permisA.printData();
-        permisB.printData();
-
-        System.out.println("\n--- Clients ---");
-        client1.printData();
-        client2.printData();
-
-        System.out.println("\n--- Locations ---");
-        location1.printData();
-        location2.printData();
- */     
-        System.out.println("etat scooter 1 avant la location");
-        parc1.EtatScooter(1);
-        client1.LouerScooter(1);
-        client1.LouerScooter(10);
-        client1.LouerScooter(1);
-        client1.printData();
-        parc1.EtatParc();
-        parc1.SaisiParc();
-        parc1.printData();
-        client1.RetournerScooter(1, 20);
-        System.out.println("etat scooter 1 apres le retour");
-        parc1.EtatScooter(1);
-        parc1.EtatParc();
-        parc1.SaisiParc();
-        client1.printData();
-        parc1.printData();
+        // Save all objects at the end
+        saveAllData(allObjects);
     }
 }
 

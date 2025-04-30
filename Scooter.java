@@ -1,7 +1,8 @@
 import java.io.*;
 import java.util.*;
+import java.io.Serializable;
 
-public class Scooter {
+public class Scooter implements Serializable {
 
     private static int inc = 1;
     private int idScoot;
@@ -28,7 +29,7 @@ public class Scooter {
         
 
 
-    public int getIdScoot() { return this.idScoot; }
+    public int getId() { return this.idScoot; }
     public Parc_Scooter getParc(){return this.parc;} 
     public Modele getModele(){return this.modele;}
 
@@ -40,7 +41,7 @@ public class Scooter {
         System.out.println("Scooter [id: " + idScoot + ", Parc: " + parc.getNom() +", modele: " + modele.getModeleNom() + "]");
         System.out.print("Locations: ");
         for (int i = 0; i < locations.size(); i++) {
-            System.out.print(locations.get(i).getIdLoc());
+            System.out.print(locations.get(i).getId());
             if (i < locations.size() - 1) System.out.print(", ");
         }
         System.out.println(); 

@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
-
-public class Permis {
+import java.io.Serializable;
+public class Permis implements Serializable {
 
     private static int inc = 1;
     private int id_permis;
@@ -14,7 +14,7 @@ public class Permis {
         this.type_permis = type;
     }
 
-    public int getId_permis() {
+    public int getId() {
         return id_permis;
     }
 
