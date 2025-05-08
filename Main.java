@@ -13,7 +13,7 @@ public class Main {
 
     public static List<Object> loadAllData() {
         List<Object> loadedObjects = new ArrayList<>();
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Data.txt"))) {
+      try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("Data.txt"))) {
             Object obj = in.readObject();
             if (obj instanceof List) {
                 loadedObjects = (List<Object>) obj;
@@ -180,6 +180,9 @@ public class Main {
                     break;
             }
         }
+
+
+
     }
 }
 
