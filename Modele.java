@@ -1,4 +1,3 @@
-
 import java.io.*;
 import java.util.*;
 import java.io.Serializable;
@@ -90,21 +89,29 @@ public class Modele implements Serializable {
             System.err.println("Le permis que tu as ajouté est null");
         }
     }
-    public void printData() {
-        System.out.println("Modele [id: " + idModele + ", nom: " + modeleNom + ", cylender: " + cylinder + ", vitesse max: " + vitesseMax + "marque:" + marque.getNomMark()+ "]");
-        marque.getNomMark();
-        System.out.print("Scooters: ");
+    public String printData() {
+        StringBuilder result = new StringBuilder();
+        result.append("Modele [id: ").append(idModele)
+              .append(", nom: ").append(modeleNom)
+              .append(", cylindre: ").append(cylinder)
+              .append(", vitesse max: ").append(vitesseMax)
+              .append(", marque: ").append(marque.getNomMark()).append("]\n");
+
+        result.append("Scooters: ");
         for (int i = 0; i < scooters.size(); i++) {
-            System.out.print(scooters.get(i).getId());
-            if (i < scooters.size() - 1) System.out.print(", ");
+            result.append(scooters.get(i).getId());
+            if (i < scooters.size() - 1) result.append(", ");
         }
-        System.out.println();
-        System.out.print("Permis: ");
+        result.append("\n");
+
+        result.append("Permis: ");
         for (int i = 0; i < permisses.size(); i++) {
-            System.out.print(permisses.get(i).getType_permis());
-            if (i < permisses.size() - 1) System.out.print(", ");
-            }
-        System.out.println();
+            result.append(permisses.get(i).getType_permis());
+            if (i < permisses.size() - 1) result.append(", ");
+        }
+        result.append("\n");
+
+        return result.toString();
     }
     
 }

@@ -1,4 +1,3 @@
-
 import java.io.*;
 import java.util.*;
 import java.io.Serializable;
@@ -39,21 +38,26 @@ public class Marque implements Serializable {
     public void setNomMark(int mark){this.idMark = mark;}
     public void setIdMark(String nomMark){this.nomMark = nomMark;}
 
-    public void printData() {
-        System.out.println("Marque [id: " + idMark + ", nom: " + nomMark + "]");;
-        System.out.print("Modèles: ");
-        for (int i = 0; i < modeles.size(); i++) {
-            System.out.print(modeles.get(i).getModeleNom());
-            if (i < modeles.size() - 1) System.out.print(", ");
-        }
-        System.out.println();
-        System.out.print("Parcs: ");
-        for (int i = 0; i < parcs_Scooters.size(); i++) {
-            System.out.print(parcs_Scooters.get(i).getNom());
-            if (i < parcs_Scooters.size() - 1) System.out.print(", ");
-        }
-        System.out.println();
+    public String printData() {
+        StringBuilder result = new StringBuilder();
+        result.append("Marque [id: ").append(idMark)
+              .append(", nom: ").append(nomMark).append("]\n");
 
+        result.append("Modèles: ");
+        for (int i = 0; i < modeles.size(); i++) {
+            result.append(modeles.get(i).getModeleNom());
+            if (i < modeles.size() - 1) result.append(", ");
+        }
+        result.append("\n");
+
+        result.append("Parcs: ");
+        for (int i = 0; i < parcs_Scooters.size(); i++) {
+            result.append(parcs_Scooters.get(i).getNom());
+            if (i < parcs_Scooters.size() - 1) result.append(", ");
+        }
+        result.append("\n");
+
+        return result.toString();
     }
     
 

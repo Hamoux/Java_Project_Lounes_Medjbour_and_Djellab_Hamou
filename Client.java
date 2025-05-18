@@ -55,78 +55,91 @@ public class Client implements Serializable {
     public void setDate_naissance(Date date_naissance) { this.date_naissance = date_naissance; }
     public void setParc(Parc_Scooter parc) {  this.parc=parc; }
 
-    public void printData() {
-        System.out.println("Client [id: " + id + ", nom: " + nom + ", prenom: " + prenom + ", tel: " + tel + ", date_naissance: " + date_naissance + "]");
-        System.out.print("Permisses: ");
+    public String printData() {
+        StringBuilder result = new StringBuilder();
+        result.append("Client [id: ").append(id)
+              .append(", nom: ").append(nom)
+              .append(", prenom: ").append(prenom)
+              .append(", tel: ").append(tel)
+              .append(", date_naissance: ").append(date_naissance).append("]\n");
+
+        result.append("Permis: ");
         for (int i = 0; i < permisses.size(); i++) {
-            System.out.print(permisses.get(i).getType_permis());
-            if (i < permisses.size() - 1) System.out.print(", ");
+            result.append(permisses.get(i).getType_permis());
+            if (i < permisses.size() - 1) result.append(", ");
         }
-        System.out.println();
-        System.out.print("Locations: ");
+        result.append("\n");
+
+        result.append("Locations: ");
         for (int i = 0; i < locations.size(); i++) {
-            System.out.print(locations.get(i).getId());
-            if (i < locations.size() - 1) System.out.print(", ");
+            result.append(locations.get(i).getId());
+            if (i < locations.size() - 1) result.append(", ");
         }
-        System.out.println();
+        result.append("\n");
+
+        return result.toString();
     }
-    public void LouerScooter(int idScoot){
+    public String LouerScooter(int idScoot) {
         if (!parc.ScooterExist(idScoot)) {
-            System.err.println("Le scooter n'existe pas!");
-            return;
+            return "Erreur : Le scooter n'existe pas !\n";
         }
-        else if(locations.size() != 0){
-            if (locations.get(locations.size() - 1).getDate_fin() == null) {
-            System.err.println("Vous avez deja loué un scooter!");
-            return; 
+
+        // Check if the user already has an active rental
+        if (!locations.isEmpty() && locations.get(locations.size() - 1).getDate_fin() == null) {
+            return "Erreur : Vous avez déjà loué un scooter !\n";
         }
-        }
-    
+
         for (Scooter scooter : parc.getScooters()) {
             if (scooter.getId() == idScoot) {
                 if (!scooter.isAvailable()) {
-                    System.out.println("Le scooter est déjà en location.");
+                    return "Erreur : Le scooter est déjà en location.\n";
                 } else {
-                    Location location2 = new Location(
-                        new Date(),
-                        scooter,
-                        this
-                    );
-                    this.addLocations(location2);
-                    scooter.addLocations(location2);
-                    System.out.println("La location est effectuée avec succès.");
+                    Location location = new Location(new Date(), scooter, this);
+                    this.addLocations(location);
+                    scooter.addLocations(location);
+                    return "Succès : La location est effectuée avec succès.\n";
                 }
-                return;
             }
         }
+        return "Erreur : Scooter non trouvé.\n";
     }
-    public void RetournerScooter(int idScoot, double kilometrage){
+
+    public String RetournerScooter(int idScoot, double kilometrage) {
         if (!parc.ScooterExist(idScoot)) {
-            System.err.println("Le scooter n'existe pas!");
-            return;
+            return "Erreur : Le scooter n'existe pas !\n";
         }
-    
+
         for (Scooter scooter : parc.getScooters()) {
             if (scooter.getId() == idScoot) {
                 if (scooter.isAvailable()) {
-                    System.out.println("Le scooter n'etait pas en location.");
-                } else {
-
-                    if(scooter.getLocations().size() != 0 && this != scooter.getLocations().get(scooter.getLocations().size() - 1).getClient()  )
-                    {System.out.println("Ce scooter a été loué par un autre utilisateur. Vous ne pouvez pas le retourner.");}
-                    else{
-                        Date date_de_fin = new Date();
-                        scooter.getLocations().get(scooter.getLocations().size() - 1).setDate_fin(date_de_fin);
-                        scooter.getLocations().get(scooter.getLocations().size() - 1).setKilometrage(kilometrage);
-                        this.locations.get(this.locations.size() - 1).setDate_fin(date_de_fin);
-                        this.locations.get(this.locations.size() - 1).setKilometrage(kilometrage);
-                        System.out.println("Le retour est effectué avec succès.");
-                        System.out.println("Le scooter est maintenant disponible pour la location.");
-                    }
+                    return "Erreur : Le scooter n'était pas en location.\n";
                 }
-                return;
+
+                // Check if the scooter was rented by this user
+                if (!scooter.getLocations().isEmpty() && this != scooter.getLocations().get(scooter.getLocations().size() - 1).getClient()) {
+                    return "Erreur : Ce scooter a été loué par un autre utilisateur. Vous ne pouvez pas le retourner.\n";
+                }
+
+                // Mark the scooter as returned
+                Date date_de_fin = new Date();
+                scooter.getLocations().get(scooter.getLocations().size() - 1).setDate_fin(date_de_fin);
+                scooter.getLocations().get(scooter.getLocations().size() - 1).setKilometrage(kilometrage);
+                this.locations.get(this.locations.size() - 1).setDate_fin(date_de_fin);
+                this.locations.get(this.locations.size() - 1).setKilometrage(kilometrage);
+
+                return "Succès : Le retour est effectué avec succès.\nLe scooter est maintenant disponible pour la location.\n";
             }
         }
+        return "Erreur : Scooter non trouvé.\n";
     }
-}
+
+    public boolean isAvailable() {
+        if (locations.isEmpty()) {
+            return true; // Never rented = available
+        }
+
+        Location lastLocation = locations.get(locations.size() - 1);
+        return lastLocation.getDate_fin() != null; // If `date_fin` is not null, the scooter is available
+    }
+    }
 
