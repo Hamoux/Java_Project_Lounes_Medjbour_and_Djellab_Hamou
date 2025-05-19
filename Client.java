@@ -115,12 +115,10 @@ public class Client implements Serializable {
                     return "Erreur : Le scooter n'était pas en location.\n";
                 }
 
-                // Check if the scooter was rented by this user
                 if (!scooter.getLocations().isEmpty() && this != scooter.getLocations().get(scooter.getLocations().size() - 1).getClient()) {
                     return "Erreur : Ce scooter a été loué par un autre utilisateur. Vous ne pouvez pas le retourner.\n";
                 }
 
-                // Mark the scooter as returned
                 Date date_de_fin = new Date();
                 scooter.getLocations().get(scooter.getLocations().size() - 1).setDate_fin(date_de_fin);
                 scooter.getLocations().get(scooter.getLocations().size() - 1).setKilometrage(kilometrage);
@@ -135,11 +133,11 @@ public class Client implements Serializable {
 
     public boolean isAvailable() {
         if (locations.isEmpty()) {
-            return true; // Never rented = available
+            return true;
         }
 
         Location lastLocation = locations.get(locations.size() - 1);
-        return lastLocation.getDate_fin() != null; // If `date_fin` is not null, the scooter is available
+        return lastLocation.getDate_fin() != null;
     }
     }
 

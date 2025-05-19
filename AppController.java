@@ -11,10 +11,10 @@ public class AppController {
         this.model = model;
         this.view = view;
 
-        // Initialize user
+        //Initializer user
         user = initializeUser();
 
-        // Add action listeners to buttons
+        //ajouter lez listeners a les buttons
         view.getRentScooterButton().addActionListener(new RentScooterListener());
         view.getReturnScooterButton().addActionListener(new ReturnScooterListener());
         view.getCheckScooterStatusButton().addActionListener(new CheckScooterStatusListener());
@@ -55,7 +55,7 @@ public class AppController {
             try {
                 int scooterId = Integer.parseInt(input);
                 String result = user.LouerScooter(scooterId);
-                // Show the result in a dialog box
+                //resultat
                 JOptionPane.showMessageDialog(view, result, "Résultat de la location", JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(view, "Erreur : " + ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -67,17 +67,17 @@ public class AppController {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                // First input dialog for the scooter ID
+                // id de scooter
                 String idInput = JOptionPane.showInputDialog(view, "Entrez l'identifiant du scooter :");
                 int scooterId = Integer.parseInt(idInput);
 
-                // Second input dialog for the kilometerage
+                //kilomitrage effectué
                 String kmInput = JOptionPane.showInputDialog(view, "Entrez le kilométrage effectué :");
                 double km = Double.parseDouble(kmInput);
 
-                // Use the output from the RetournerScooter method
+                //output
                 String result = user.RetournerScooter(scooterId, km);
-                // Show the result in a dialog box
+                //resultat
                 JOptionPane.showMessageDialog(view, result, "Résultat du retour", JOptionPane.INFORMATION_MESSAGE);
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(view, "Entrée invalide. Veuillez entrer des valeurs valides.", "Erreur", JOptionPane.ERROR_MESSAGE);
@@ -94,7 +94,7 @@ public class AppController {
             try {
                 int scooterId = Integer.parseInt(input);
                 String status = user.getParc().EtatScooter(scooterId);
-                // Show the result in a dialog box
+                //resultat
                 JOptionPane.showMessageDialog(view, status, "État du scooter", JOptionPane.INFORMATION_MESSAGE);
             } catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(view, "Entrée invalide. Veuillez entrer un identifiant valide.", "Erreur", JOptionPane.ERROR_MESSAGE);

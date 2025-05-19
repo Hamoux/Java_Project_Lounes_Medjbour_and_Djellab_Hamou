@@ -54,7 +54,7 @@ public class AppModel {
     }
 
     public void initializeData() {
-        // Create or update objects dynamically
+        //crée ou mettre a jour les objets
         Marque BMW = findOrCreate(new Marque("BMW"), 1);
         Modele MP40 = findOrCreate(new Modele("MP40", "v_twin", 150, BMW), 1);
         Parc_Scooter parc1 = findOrCreate(new Parc_Scooter("Louvre", 200), 1);
@@ -81,7 +81,7 @@ public class AppModel {
         Client client1 = findOrCreate(new Client("Djellab", 123456789, "Hamou", new Date(1995 - 1900, Calendar.JANUARY, 10), parc1), 1);
         Client client2 = findOrCreate(new Client("Medjbour", 987654321, "Lounes", new Date(1990 - 1900, Calendar.MARCH, 25), parc1), 2);
 
-        // Add objects to their respective collections
+        //populé les collections
         parc1.addMarque(BMW);
         parc1.addScooter(Scot1);
         parc1.addClient(client1);
